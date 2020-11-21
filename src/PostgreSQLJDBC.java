@@ -1,16 +1,18 @@
 import db.PostgresManager;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-public class PostgreSQLJDBC {
+import java.sql.*;
+public class PostgreSQLJDBC{
     public static void main(String args[]) {
         Connection c = null;
         try {
-            c = PostgresManager.getConnection();
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "Shivaji@16");
-            Statement statement = c.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from Passenger" );
+          c = PostgresManager.getConnection();
+            String queryCheck = "select name,age,address,contact from Passenger" + " where idCard=?";
+           c = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/postgres", "postgres", "Shivaji@16");
+            ResultSet resultSet;
+            PreparedStatement ps = c.prepareStatement(queryCheck);
+            ps.setLong(1,this.idCard);
+                resultSet = ps.executeQuery();
+            // Statement statement = c.createStatement();
+        //    ResultSet resultSet = statement.executeQuery("select * from Passenger" );
             while (resultSet.next()) {
                 System.out.println("idCard: " + resultSet.getLong("idCard"));
                 System.out.println("name: " + resultSet.getString("name"));
