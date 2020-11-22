@@ -1,37 +1,19 @@
 import db.PostgresManager;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 public abstract class Passenger {
     private String name;
     private int age;
     public String address;
     private long idCard;
     private long contact;
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public long getIdCard() {
-        return idCard;
-    }
-
+    public String getAddress() { return address; }
+    public void setAddress(String address) { this.address = address; }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    public long getIdCard() { return idCard; }
     public void setIdCard(long idCard) {
         this.idCard = idCard;
     }
